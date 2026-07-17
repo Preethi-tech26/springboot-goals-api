@@ -4,15 +4,24 @@ A REST API built with Spring Boot and JPA/H2 to manage learning goals — built 
 
 ## Features
 - Full CRUD (Create, Read, Update, Delete) for goals
-- JPA/Hibernate ORM with H2 in-memory database
+- JPA/Hibernate ORM with persistent PostgreSQL database
+- Input validation with clear error messages (Bean Validation)
 - RESTful endpoints following standard conventions
 
 ## Tech Stack
 - Java 21
 - Spring Boot 3.3
 - Spring Data JPA
-- H2 Database
+- PostgreSQL
+- Spring Boot Validation
 - Maven
+
+
+## Validation
+Invalid input returns a `400 Bad Request` with a clear error message, e.g.:
+```json
+{"title": "Title cannot be empty"}
+```
 
 ## Getting Started
 
@@ -37,11 +46,8 @@ Visit `http://localhost:8080` to confirm it's running.
 | PUT    | `/goals/{id}`    | Update a goal           |
 | DELETE | `/goals/{id}`    | Delete a goal           |
 
-## Database Console
-View the H2 database directly at `http://localhost:8080/h2-console`
-- JDBC URL: `jdbc:h2:mem:goalsdb`
-- Username: `sa`
-- Password: (blank)
+## Database
+Uses PostgreSQL. For local development, ensure PostgreSQL is running locally with a `goalsdb` database created.
 
 ## About
 Built as part of a self-directed learning project transitioning from QA/integration testing into backend development, exploring both Python (FastAPI) and Java (Spring Boot) stacks.
