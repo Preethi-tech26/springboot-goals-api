@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import jakarta.validation.Valid;
 
 @RestController
 public class GoalsController {
@@ -22,11 +23,12 @@ public class GoalsController {
         return goalRepository.findAll();
     }
 
-    @PostMapping("/goals")
-    public Goal createGoal(@RequestBody Map<String, String> body) {
-        Goal goal = new Goal(body.get("title"));
-        return goalRepository.save(goal);
-    }
+
+@PostMapping("/goals")
+public Goal createGoal(@Valid @RequestBody GoalRequest request) {
+    Goal goal = new Goal(request.getTitle());
+    return goalRepository.save(goal);
+}
     
     @PutMapping("/goals/{id}")
     public Goal updateGoal(@PathVariable Long id, @RequestBody Map<String, Object> body) {
