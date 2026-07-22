@@ -1,0 +1,1 @@
+Total goals in database: 6
